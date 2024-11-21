@@ -9,5 +9,6 @@ typedef struct IntNode
 
 IntNode* insertAtHead(IntNode* head, IntNode* newNode);
 IntNode* removeAtHead(IntNode* head);
+IntNode* initNode(int value);
 
 #endif

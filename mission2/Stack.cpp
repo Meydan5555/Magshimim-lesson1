@@ -3,13 +3,8 @@
 
 void push(Stack* s, unsigned int element)
 {
-	if (s->count < s->max)
-	{
-		IntNode* newNode = new IntNode();
-		newNode->val = element;
-		s->head = insertAtHead(s->head, newNode);
-		s->count++;
-	}
+	s->head = insertAtHead(s->head, initNode(element));
+	s->count++;
 }
 
 int pop(Stack* s)
@@ -18,30 +13,28 @@ int pop(Stack* s)
 	{
 		return -1;
 	}
+	int val = s->head->val;
 	s->head = removeAtHead(s->head);
 	s->count--;
-	return NULL;
+	return val;
 }
 
 void initStack(Stack* s)
 {
-	IntNode* curr;
 	s->count = 0;
-	s->max = 0;
-	while (s->head)
-	{
-		s->head = removeAtHead(s->head);
-	}
+	s->head = NULL;
 }
 
 void cleanStack(Stack* s)
 {
-	IntNode* curr;
-	while (s->head)
+	IntNode* curr = s->head;
+	IntNode* temp = NULL;
+	while (curr)
 	{
-		s->head = removeAtHead(s->head);
+		temp = curr;
+		curr = curr->next;
+		delete temp;
 	}
-	delete s;
 }
 
 bool isEmpty(Stack* s)
@@ -55,9 +48,5 @@ bool isEmpty(Stack* s)
 
 bool isFull(Stack* s)
 {
-	if (s->count == s->max)
-	{
-		return true;
-	}
 	return false;
 }

@@ -6,8 +6,7 @@
 /* a positive-integer value stack, with no size limit */
 typedef struct Stack
 {
-	IntNode* head;
-	int max;
+	struct IntNode* head;
 	int count;
 } Stack;
 
